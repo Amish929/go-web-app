@@ -2,7 +2,7 @@ replicaCount: 1
 image: 
   repository: amish28/go-web-app
   pullPolicy: IfNotPresent
-  tag: "15993355417"
+  tag: "15993420508"
 ingress:
   enabled: false
   className: ""
