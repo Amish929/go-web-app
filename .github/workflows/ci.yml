@@ -20,14 +20,20 @@ jobs:
     - name: Test
       run: go test ./...
   code-quality:
-   runs-on: ubuntu-latest
-   steps:
-   - name: Checkout repository
-     uses: actions/checkout@v4
-   - name: Run golang-lint
-     uses: golangci/golangci-lint-action@v6
-     with:
-       version: v1.59.0
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Go 1.22
+      uses: actions/setup-go@v5
+      with:
+        go-version: 1.22
+    - name: Clean Go build cache
+      run: go clean -modcache
+    - name: Run golangci-lint
+      uses: golangci/golangci-lint-action@v6
+      with:
+        version: v1.59.0
   push:
     runs-on: ubuntu-latest
     needs: build
